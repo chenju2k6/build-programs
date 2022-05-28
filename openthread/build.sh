@@ -1,0 +1,34 @@
+cd openthread
+git checkout 5b0af03afb8e70e8216f69623bd18bcd3d4b8b43
+./bootstrap
+export CPPFLAGS="                                     \
+    -DOPENTHREAD_CONFIG_BORDER_AGENT_ENABLE=1         \
+    -DOPENTHREAD_CONFIG_BORDER_ROUTER_ENABLE=1        \
+    -DOPENTHREAD_CONFIG_CHANNEL_MANAGER_ENABLE=1      \
+    -DOPENTHREAD_CONFIG_CHANNEL_MONITOR_ENABLE=1      \
+    -DOPENTHREAD_CONFIG_CHILD_SUPERVISION_ENABLE=1    \
+    -DOPENTHREAD_CONFIG_COAP_API_ENABLE=1             \
+    -DOPENTHREAD_CONFIG_COAP_SECURE_API_ENABLE=1      \
+    -DOPENTHREAD_CONFIG_COMMISSIONER_ENABLE=1         \
+    -DOPENTHREAD_CONFIG_DHCP6_CLIENT_ENABLE=1         \
+    -DOPENTHREAD_CONFIG_DHCP6_SERVER_ENABLE=1         \
+    -DOPENTHREAD_CONFIG_DIAG_ENABLE=1                 \
+    -DOPENTHREAD_CONFIG_DNS_CLIENT_ENABLE=1           \
+    -DOPENTHREAD_CONFIG_ECDSA_ENABLE=1                \
+    -DOPENTHREAD_CONFIG_LEGACY_ENABLE=1               \
+    -DOPENTHREAD_CONFIG_JAM_DETECTION_ENABLE=1        \
+    -DOPENTHREAD_CONFIG_JOINER_ENABLE=1               \
+    -DOPENTHREAD_CONFIG_LINK_RAW_ENABLE=1             \
+    -DOPENTHREAD_CONFIG_MAC_FILTER_ENABLE=1           \
+    -DOPENTHREAD_CONFIG_NCP_UART_ENABLE=1             \
+    -DOPENTHREAD_CONFIG_REFERENCE_DEVICE_ENABLE=1     \
+    -DOPENTHREAD_CONFIG_SNTP_CLIENT_ENABLE=1          \
+    -DOPENTHREAD_CONFIG_TMF_NETDATA_SERVICE_ENABLE=1  \
+    -DOPENTHREAD_CONFIG_TMF_NETWORK_DIAG_MTD_ENABLE=1 \
+    -DOPENTHREAD_CONFIG_UDP_FORWARD_ENABLE=1"
+sed -i 's/ -Werror//g' config*  # Disable compiler warnings.
+./configure --enable-fuzz-targets --enable-cli --enable-ftd --enable-joiner \
+    --enable-ncp --disable-docs
+make V=1 -j $(nproc)
+
+cp tests/fuzz/ip6-send-fuzzer ../openthread.symsan
