@@ -19,6 +19,7 @@ ar r driver_symsan.a driver_symsan.o
 
 sudo cp driver_symsan.a /usr/lib/libFuzzingEngine.a
 
+mkdir -p binutils
 echo "binutils"
 
 cd binutils
