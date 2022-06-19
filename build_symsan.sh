@@ -17,7 +17,7 @@ export SANITIZER=
 $CC -c standaloneengine.c -o driver_symsan.o
 ar r driver_symsan.a driver_symsan.o
 
-sudo cp driver_symsan.a /usr/lib/libFuzzingEngine.a
+cp driver_symsan.a /usr/lib/libFuzzingEngine.a
 
 mkdir -p binutils
 echo "binutils"

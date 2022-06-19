@@ -7,6 +7,7 @@ export LIB_FUZZING_ENGINE=$PWD/driver_symcc.a
 export CFLAGS=
 export CXXFLAGS=
 export SYMCC_NO_SYMBOLIC_INPUT=1
+export SYMCC_LIBCXX_PATH=/src/libcxx_symcc/install/lib
 export OUT=$PWD
 export ARCHITECTURE=
 export SANITIZER=
@@ -14,7 +15,7 @@ export SANITIZER=
 $CC -c standaloneengine.c -o driver_symcc.o
 ar r driver_symcc.a driver_symcc.o
 
-sudo cp driver_symcc.a /usr/lib/libFuzzingEngine.a
+cp driver_symcc.a /usr/lib/libFuzzingEngine.a
 
 mkdir -p binutils
 echo "binutils"
@@ -131,13 +132,6 @@ git clone https://github.com/openthread/openthread.git
 cp openthread.symsan ../opthread.symcc
 cd ..
 
-
-echo  "sqlite"
-cd sqlite
-tar xvf sqlite3.tar.gz
-./build.sh
-cp sqlite/sqlite.symsan ../sqlite.symcc
-cd ..
 
 echo "mbedtls"
 cd mbedtls

@@ -13,7 +13,7 @@ export SANITIZER=
 $CC -c standaloneengine.c -o driver_native.o
 ar r driver_native.a driver_native.o
 
-sudo cp driver_native.a /usr/lib/libFuzzingEngine.a
+cp driver_native.a /usr/lib/libFuzzingEngine.a
 
 mkdir -p binutils
 echo "binutils"
