@@ -1,7 +1,7 @@
 #!/bin/bash
 
-export CC=/home/cju/fastgen/bin/ko-clang
-export CXX=/home/cju/fastgen/bin/ko-clang++
+export CC=/symsan/bin/ko-clang
+export CXX=/symsan/bin/ko-clang++
 export KO_CC=clang-6.0
 export KO_CXX=clang++-6.0
 export FUZZER_LIB=$PWD/driver_symsan.a
