@@ -1,7 +1,7 @@
 #!/bin/bash
 
-export CC=clang
-export CXX=clang++
+export CC=clang-12
+export CXX=clang++-12
 export FUZZER_LIB=$PWD/driver_native.a
 export LIB_FUZZING_ENGINE=$PWD/driver_native.a
 export CFLAGS=
