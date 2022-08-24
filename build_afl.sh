@@ -1,7 +1,7 @@
 #!/bin/bash
 
-export CC=/AFL/afl-clang-fast
-export CXX=/AFL/afl-clang-fast++
+export CC=/afl/afl-clang-fast
+export CXX=/afl/afl-clang-fast++
 export FUZZER_LIB=/libAFLDriver.a
 export LIB_FUZZING_ENGINE=/libAFLDriver.a
 export CFLAGS=
