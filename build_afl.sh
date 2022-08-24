@@ -2,18 +2,16 @@
 
 export CC=/AFL/afl-clang-fast
 export CXX=/AFL/afl-clang-fast++
-export FUZZER_LIB=$PWD/driver_afl.a
-export LIB_FUZZING_ENGINE=$PWD/driver_afl.a
+export FUZZER_LIB=/libAFLDriver.a
+export LIB_FUZZING_ENGINE=/libAFLDriver.a
 export CFLAGS=
 export CXXFLAGS=
 export OUT=$PWD
 export ARCHITECTURE=
 export SANITIZER=
 
-$CC -c standaloneengine.c -o driver_afl.o
-ar r driver_afl.a driver_afl.o
 
-cp driver_afl.a /usr/lib/libFuzzingEngine.a
+cp /libAFLDriver.a /usr/lib/libFuzzingEngine.a
 
 mkdir -p binutils
 echo "binutils"
